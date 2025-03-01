@@ -7,10 +7,11 @@
         "use": "@vercel/node"
       }
     ],
-    "functions": {
-      "api/server.js": {
-        "runtime": "nodejs18.x"
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "server.js"
       }
-    }
+    ]
   }
   

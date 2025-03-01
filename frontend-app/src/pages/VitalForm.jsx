@@ -20,7 +20,7 @@ const VitalForm = () => {
   // Fetch Vital Data
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/vital")
+      .get(`${baseURL}/api/vital`)
       .then((res) => setData(res.data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
@@ -34,7 +34,7 @@ const VitalForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/vital", form)
+      .post(`${baseURL}/api/vital`, form)
       .then((res) => {
         alert("Vital data added successfully! ✅");
         setData([...data, res.data]); // Update UI with new data

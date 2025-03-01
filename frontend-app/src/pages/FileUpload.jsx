@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import baseURL from "../assets/API_URL";
 const FileUpload = () => {
   const [file, setFile] = useState(null);
   const [text, setText] = useState("");
@@ -18,7 +18,7 @@ const FileUpload = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/files/upload", formData, {
+      const response = await axios.post(`${baseURL}/api/files/upload`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setText(response.data.text);

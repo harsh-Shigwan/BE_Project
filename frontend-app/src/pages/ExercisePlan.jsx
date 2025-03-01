@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaPrint, FaDownload, FaArrowLeft } from "react-icons/fa";
-
+import baseURL from "../assets/API_URL";
 const exerciseTypes = ["cardio", "strength", "flexibility", "high-intensity", "yoga"];
 const durations = ["20min", "40min", "1hr"];
 
@@ -18,7 +18,7 @@ const ExercisePlan = () => {
   const fetchExercisePlan = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://localhost:5000/api/exercise/${selectedExercise}/${selectedDuration}/${userId}`);
+      const response = await axios.get(`${baseURL}/api/exercise/${selectedExercise}/${selectedDuration}/${userId}`);
       setPlan(response.data.recommendation);
     } catch (error) {
       console.error("Error fetching exercise plan:", error);

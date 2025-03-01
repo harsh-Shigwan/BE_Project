@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaPrint, FaDownload, FaArrowLeft } from "react-icons/fa";
-
+import baseURL from "../assets/API_URL";
 const dietTypes = ["normal", "vegetarian", "vegan", "gluten-free", "diabetic-friendly"];
 
 const DietPlan = () => {
@@ -24,7 +24,7 @@ const DietPlan = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`http://localhost:5000/api/dietplan/${type}/${userId}`);
+      const response = await axios.get(`${baseURL}/api/dietplan/${type}/${userId}`);
       setRecommendation(response.data.recommendation);
     } catch (err) {
       setError("Failed to fetch data");

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import baseURL from '../assets/API_URL';
 const Vital = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Vital = () => {
     navigate('/vitalForm');
   }
   useEffect(() => {
-    axios.get('http://localhost:5000/api/vital') // ✅ Added `http://`
+    axios.get(`${baseURL}/api/vital`) // ✅ Added `http://`
       .then((res) => setData(res.data))
       .catch((error) => console.log(error.response?.data)
      //console.log(error.response?.data));

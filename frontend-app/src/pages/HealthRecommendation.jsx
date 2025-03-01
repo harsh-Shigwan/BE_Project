@@ -11,7 +11,7 @@
 //     setLoading(true);
 
 //     try {
-//       const response = await axios.get(`http://localhost:5000/api/recommendation/${userId}`);
+//       const response = await axios.get(`${baseURL}/api/recommendation/${userId}`);
 //       setData(response.data.recommendation);
 //       console.log("Recommendation:", response.data.recommendation);
 //     } catch (error) {
@@ -62,7 +62,7 @@ import { useState } from "react";
 import axios from "axios";
 import { FaUtensils, FaDumbbell, FaHeartbeat, FaWalking } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import baseURL from "../assets/API_URL";
 const HealthRecommendation = () => {
   const [userId, setUserId] = useState("");
   const [data, setData] = useState(null);
@@ -79,7 +79,7 @@ const HealthRecommendation = () => {
     setLoading(true);
 
     try {
-      const response = await axios.get(`http://localhost:5000/api/recommendation/${userId}`);
+      const response = await axios.get(`${baseURL}/api/recommendation/${userId}`);
       setData(response.data.recommendation);
     } catch (error) {
       console.error("Error fetching recommendation:", error);

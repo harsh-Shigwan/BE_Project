@@ -14,7 +14,9 @@ app.use(cors());
 app.use(express.json());
 
 connectDB();
-
+app.get("/", (req, res) => {
+  res.json({ message: "Backend running on Vercel!" });
+});
 app.use('/api/vital', vitalDataRoutes);
 app.use('/api/recommendation', recommendationRoutes);
 app.use("/api/dietplan", dietplan);

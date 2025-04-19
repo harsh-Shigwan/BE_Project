@@ -3,25 +3,25 @@ const axios = require('axios');
 const router = express.Router();
 require('dotenv').config();
 
-// Google Gemini API Key
-const GEMINI_API_KEY = "AIzaSyDTgxtvi0qqERS5YU5FHR3eI0r_K7DJ6bI";
+
 
 // Function to fetch exercise plan based on type and duration
 const getExercisePlan = async (userId, exerciseType, duration) => {
   try {
     // Fetch user vital data
-    const vitalResponse = await axios.get(`http://localhost:5000/api/vital/${userId}`);
+    const vitalResponse = await axios.get(`http://localhost:3300/api/vital/${userId}`);
     console.log("Fetched Data:", vitalResponse.data);
     const data = vitalResponse.data;
 
     // Enhanced prompt with exercise type and duration
     const prompt = `
-      A user has the following vital health data:
+      A Patient ${data.Name} of age ${data.Age} and gender ${data.Gender} has the following vital health data:
 
-      - **Heart Rate**: ${data.heartRate} bpm
-      - **Blood Pressure**: ${data.bloodPressure}
-      - **Temperature**: ${data.temperature}°C
-      - **Oxygen Level**: ${data.oxygenLevel}%
+      - **Hemoglobin**: ${data.Vitals.Hemoglobin} 
+      - **RBC Count**: ${data.Vitals.RBC_Count} 
+      - **Platelet Count**: ${data.Vitals.Platelet_Count}
+      - **ESR**: ${data.Vitals.ESR}
+      - **HbA1c**: ${data.Vitals.HbA1c}
 
       Based on these vitals, Generate a personalized and detailed workout plan suitable for a healthy lifestyle for Indian ${exerciseType} people with a workout duration of ${duration}.
     
@@ -61,7 +61,7 @@ Ensure that the plan is **realistic, easy to follow, and optimized for overall h
 
     // Call Gemini API
     const geminiResponse = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         contents: [{ role: "user", parts: [{ text: prompt }] }]
       },

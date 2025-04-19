@@ -9,6 +9,11 @@ import FileUpload from './pages/FileUpload.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DietPlan from './pages/DietPlan.jsx'
 import ExercisePlan from './pages/ExercisePlan.jsx'
+import Home from './blockchain/Home.jsx'
+
+import Upload from "./artifacts/contracts/Upload.sol/Upload.json"
+import ChatBotAI from './chatbot/ChatBotAI.JSX'
+import Pre from './Prescription/Pre.jsx'
 function App() {
   return (
     <Router>
@@ -19,6 +24,9 @@ function App() {
       <Route path="/fileupload" element={<FileUpload />}></Route>
       <Route path="/dietPlan/:userId" element={<DietPlan />}></Route>
       <Route path="/exercise/:userId" element={<ExercisePlan />}></Route> 
+      <Route path="/blockchain_store" element={<Home/>}></Route>
+      <Route path="/medi_chatbot" element={<ChatBotAI/>}></Route>
+      <Route path='/prescription' element={<Pre/>} />
       </Routes>
     </Router>
   )
